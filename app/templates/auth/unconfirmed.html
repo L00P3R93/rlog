@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../../../favicon.ico">
+
+        <title>RLog | Settings </title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/main/styles/bootstrap4/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="/static/main/styles/floating-labels.css" rel="stylesheet">
+    </head>
+
+    <body>
+
+        <div class="form-signin" >
+            <div class="text-center mb-4">
+                <img class="mb-4" src="{{url_for('static', filename='images/icons/meko-01.png')}}" alt="IMG_LOGO">
+                <h1 class="h3 mb-3 font-weight-normal">Hello, {{ current_user.username }}!</h1>
+
+                <h3 class="h3 mb-3 font-weight-normal">You have not confirmed your account yet.</h3>
+                <p>
+                    Before you can access this site you need to confirm your account.
+                    Check your inbox, you should have received an email with a confirmation link.
+                </p>
+                <p>
+                    Need another confirmation email?
+                    <a href="{{ url_for('auth.resend_confirmation') }}">Click here</a>
+                </p>
+            </div>
+            <p class="mt-5 mb-3 text-muted text-center">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </p>
+
+        </div>
+    </body>
+</html>

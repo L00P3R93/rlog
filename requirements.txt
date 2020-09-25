@@ -1,0 +1,16 @@
+Faker
+Flask
+Flask-Bootstrap4
+Flask-Login
+Flask-Mail
+Flask-Migrate
+Flask-Moment
+Flask-PageDown
+Flask-Script
+Flask-SQLAlchemy
+Flask-WTF
+ForgeryPy
+Pillow
+Flask-SSLify
+Markdown
+email-validator

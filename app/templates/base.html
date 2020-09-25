@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+  <title>Admin | RLog</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="/static/admin/plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="/static/admin/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/static/admin/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <!-- Dropzone -->
+  <link rel="stylesheet" href="/static/admin/plugins/dropzone/min/dropzone.min.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="/static/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/static/admin/dist/css/adminlte.min.css">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <style>
+    .lim{max-height:60vh; overflow-y:scroll;}
+  </style>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+<div class="wrapper">
+  <!-- Navbar -->
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="/admin" class="nav-link">Home</a>
+      </li>
+    </ul>
+
+    <!-- SEARCH FORM -->
+    <form class="form-inline ml-3">
+      <div class="input-group input-group-sm">
+        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+          <button class="btn btn-navbar" type="submit">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Right navbar links -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Notifications Dropdown Menu -->
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <img src="{{current_user.gravatar(size=256)}}" class="img-circle elevation-2 mr-2" width="30" height="30" alt="User Image">
+          {{current_user.username}}
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <a href="/" class="dropdown-item">
+            <i class="fas fa-envelope mr-2"></i> Blog Home
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{{url_for('main.profile', id=current_user.id)}}" class="dropdown-item">
+            <i class="fas fa-users mr-2"></i> Your Profile
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="{{url_for('auth.logout')}}" class="dropdown-item">
+            <i class="fas fa-file mr-2"></i> Logout
+          </a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/admin" class="brand-link">
+      <img src="/static/admin/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+           style="opacity: .8">
+      <span class="brand-text font-weight-light">RLOG</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="/admin" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{url_for('main.users')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Users
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url_for('main.posts') }}" class="nav-link">
+              <i class="nav-icon fas fa-copy"></i>
+              <p>
+                Posts
+              </p>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+
+  {% block content %}{% endblock %}
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <strong>Copyright &copy; 2020.</strong>
+    All rights reserved.
+    <div class="float-right d-none d-sm-inline-block">
+      <b>Version</b> 1.0.0
+    </div>
+  </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="/static/admin/plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/static/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- DataTables -->
+<script src="/static/admin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="/static/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="/static/admin/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="/static/admin/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<!-- Dropzone -->
+<script src="/static/admin/plugins/dropzone/min/dropzone.min.js"></script>
+
+<!-- overlayScrollbars -->
+<script src="/static/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/static/admin/dist/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="/static/admin/dist/js/demo.js"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    //$(".prev").hide()
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#preview').attr('src', e.target.result);
+                //$('.prev').show()
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#file").change(function(){
+        readURL(this);
+    });
+
+
+  });
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+  $("#res").hide()
+  $(".post").click(function(){
+    var id = $(this).attr("v");
+    console.log(id);
+    $("#res").show();
+    $.getJSON(
+      $SCRIPT_ROOT+'/admin/_set_post',
+      {id:id},
+      function(data){
+        //$("#res").text("TITLE: "+data.title+" BODY:"+data.body+" AUTHOR:"+data.author+" TIME:"+data.time);
+        $(".title").html(data.title);
+        $(".author").html("Author: "+data.author);
+        $(".body").html(data.body);
+        $(".time").html("Posted on: "+data.time);
+        $(".link").prop("href","/admin/edit/"+data.id);
+    });
+    return false;
+  });
+
+</script>
+{{ moment.include_moment() }}
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="icon" href="../../../../favicon.ico">
+
+        <title>RLog | Register</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="/static/main/styles/bootstrap4/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="/static/main/styles/floating-labels.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+        <form action="" method="POST" class="form-signin">
+            {{ form.hidden_tag() }}
+            <div class="text-center mb-4">
+              <img class="mb-4" src="{{url_for('static', filename='images/icons/meko-01.png')}}" alt="IMG_LOGO">
+              <h1 class="h3 mb-3 font-weight-normal">Register</h1>
+              <p>Already Registered? <a href="{{url_for('auth.login')}}">Sign In Here</a>.</p>
+            </div>
+
+            <div class="form-label-group">
+                {%if form.email.errors%}
+                    {{form.email(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {%for error in form.email.errors%}
+                            <span>{{error}}</span>
+                        {%endfor%}
+                    </div>
+                {%else%}
+                    {{form.email(class="form-control", id="inputEmail",placeholder="Email Address", autofocus="")}}
+                    {{form.email.label(for="inputEmail")}}
+                {%endif%}
+
+            </div>
+            <div class="form-label-group">
+                {%if form.username.errors%}
+                    {{form.username(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {%for error in form.username.errors%}
+                            <span>{{error}}</span>
+                        {%endfor%}
+                    </div>
+                {%else%}
+                    {{form.username(class="form-control", id="username",placeholder="Username",autocomplete="off")}}
+                    {{form.username.label(for="username")}}
+                {%endif%}
+            </div>
+            <div class="form-label-group">
+                {%if form.password.errors%}
+                    {{form.password(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {%for error in form.password.errors%}
+                            <span>{{error}}</span>
+                        {%endfor%}
+                    </div>
+                {%else%}
+                    {{form.password(class="form-control", id="inputPassword", placeholder="Password")}}
+                    {{form.password.label(for="inputPassword")}}
+                {%endif%}
+            </div>
+            <div class="form-label-group">
+                {%if form.password2.errors%}
+                    {{form.password2(class="form-control form-control-lg is-invalid")}}
+                    <div class="invalid-feedback">
+                        {%for error in form.password2.errors%}
+                            <span>{{error}}</span>
+                        {%endfor%}
+                    </div>
+                {%else%}
+                    {{form.password2(class="form-control", id="inputPassword2", placeholder="Confirm Password")}}
+                    {{form.password2.label(for="inputPassword2")}}
+                {%endif%}
+            </div>
+            {{form.submit(class="btn btn-lg btn-primary btn-block")}}
+            <p class="mt-5 mb-3 text-muted text-center">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved </p>
+
+        </form>
+    </body>
+
+</html>

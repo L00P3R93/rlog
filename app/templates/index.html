@@ -1,0 +1,120 @@
+{% extends 'head.html' %}
+{% block content %}
+    <!-- Home -->
+	<div class="home">
+		<!-- Home Slider -->
+		<div class="home_slider_container">
+			<div class="owl-carousel owl-theme home_slider">
+
+				<!-- Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(/static/main/images/home_slider.jpg)"></div>
+					<div class="home_slider_content_container">
+						<div class="container">
+							<div class="row">
+								<div class="col">
+									<div class="home_slider_content" style="margin-top:50px; margin-left:35%;">
+										<div class="home_slider_item_category trans_200"><a href="" class="trans_200">HELLO</a></div>
+										<div class="home_slider_item_title">
+											<a href="">Welcome To RLOG</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Page Content -->
+	<div class="page_content">
+		<div class="container">
+			<div class="row row-lg-eq-height">
+
+				<!-- Main Content -->
+
+				<div class="col-lg-12">
+					<div class="main_content">
+
+						<!-- Blog Section - Don't Miss -->
+						<div class="blog_section">
+							<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+								<div class="section_title">Don't Miss</div>
+							</div>
+							<div class="section_content">
+								<div class="grid clearfix">
+                                    {% for i in range(0,2) %}
+                                        <!-- Largest Card With Image -->
+                                        <div class="card card_largest_with_image grid-item">
+                                            <img class="card-img-top" src="/static/admin/uploads/{{posts[i].image}}" alt="https://unsplash.com/@cjtagupa">
+                                            <div class="card-body">
+                                                <div class="card-title"><a href="{{ url_for('.post', id=posts[i].id) }}">{{posts[i].title}}</a></div>
+                                                <p class="card-text">{{posts[i].body}}</p>
+                                                <small class="post_meta"><a href="{{url_for('main.user',username=posts[i].author.username)}}">{{posts[i].author.username}}</a><span>{{moment(posts[i].timestamp).fromNow()}}</span></small>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    {% for i in range(posts|length-4,posts|length) %}
+                                        <!-- Small Card With Image -->
+                                        <div class="card card_small_with_image grid-item">
+                                            <img class="card-img-top" src="/static/admin/uploads/{{posts[i].image}}" alt="https://unsplash.com/@jakobowens1">
+                                            <div class="card-body">
+                                                <div class="card-title card-title-small"><a href="{{ url_for('.post', id=posts[i].id) }}">{{posts[i].title}}</a></div>
+                                                <small class="post_meta"><a href="{{url_for('main.user',username=posts[i].author.username)}}">{{posts[i].author.username}}</a><span>{{ moment(posts[i].timestamp).fromNow() }}</span></small>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+									{% for i in range(6,10) %}
+                                        <!-- Default Card No Image -->
+                                        <div class="card card_default card_default_no_image grid-item">
+                                            <div class="card-body">
+                                                <div class="card-title card-title-small"><a href="{{ url_for('.post', id=posts[i].id) }}">{{posts[i].title}}</a></div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+								</div>
+							</div>
+						</div>
+
+						<!-- Blog Section - What's Trending -->
+						<div class="blog_section">
+							<div class="section_panel d-flex flex-row align-items-center justify-content-start">
+								<div class="section_title">What's Trending</div>
+							</div>
+							<div class="section_content">
+                                <div class="grid clearfix">
+                                    {% for i in range(12,13) %}
+                                        <!-- Large Card With Image -->
+                                        <div class="card grid-item card_large_with_image">
+                                            <img class="card-img-top" src="/static/admin/uploads/{{posts[i].image}}" alt="">
+                                            <div class="card-body">
+                                                <div class="card-title"><a href="{{ url_for('.post', id=posts[i].id) }}">{{posts[i].title}}</a></div>
+                                                <p class="card-text">{{posts[i].body[:200]}}</p>
+                                                <small class="post_meta"><a href="{{url_for('main.user',username=posts[i].author.username)}}">{{posts[i].author.username}}</a><span>{{ moment(posts[i].timestamp).fromNow() }}</span></small>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                    {% for i in range(13,19) %}
+                                        <!-- Default Card No Image -->
+                                        <div class="card card_default card_default_no_image grid-item">
+                                            <div class="card-body">
+                                                <div class="card-title card-title-small"><a href="{{ url_for('.post', id=posts[i].id) }}">{{posts[i].title}}</a></div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="load_more">
+						<div id="load_more" class="load_more_button text-center trans_200">Load More</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+<ul class="comment_list">
+												{% for comment in comments %}
+												<li class="comment">
+													<div class="comment_body">
+														<div class="comment_panel d-flex flex-row align-items-center justify-content-start">
+															<div class="comment_author_image"><div><img src="{{comment.author.gravatar(size=40)}}" alt=""></div></div>
+															<small class="post_meta"><a href="#">{{comment.author.name}}</a><span>{{ moment(comment.timestamp).fromNow() }}</span></small>
+															<button type="button" class="reply_button ml-auto">Reply</button>
+														</div>
+														<div class="comment_content">
+															{% if comment.disabled %}
+															<p><i>This comment has been disabled by a moderator.</i></p>
+															{% endif %}
+															{% if moderate or not comment.disabled %}
+																{% if comment.body_html %}
+																	{{ comment.body_html | safe }}
+																{% else %}
+																	<p>{{ comment.body }}</p>
+																{% endif %}
+															{% endif %}
+														</div>
+													</div>
+													{% if moderate %}
+														<br>
+														{% if comment.disabled %}
+														<a class="btn btn-default btn-xs" href="{{ url_for('.moderate_enable', id=comment.id, page=page) }}">Enable</a>
+														{% else %}
+														<a class="btn btn-danger btn-xs" href="{{ url_for('.moderate_disable', id=comment.id, page=page) }}">Disable</a>
+														{% endif %}
+													{% endif %}
+												</li>
+												{% endfor %}
+											</ul>
